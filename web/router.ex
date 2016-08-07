@@ -17,6 +17,7 @@ defmodule Chat.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/room", RoomController, except: [:delete]
     resources "/users", UsersController, except: [:delete]
   end
 
