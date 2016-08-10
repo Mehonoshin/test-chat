@@ -18,7 +18,7 @@ defmodule Chat.Router do
 
     get "/", PageController, :index
     resources "/room", RoomController, except: [:delete]
-    resources "/users", UsersController, except: [:delete]
+    resources "/users", UserController, except: [:delete]
   end
 
   # Other scopes may use custom stacks.
