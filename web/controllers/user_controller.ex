@@ -12,7 +12,13 @@ defmodule Chat.UserController do
   end
 
   def create(conn, %{"username" => username} = params) do
-    res = Chat.Redis.run_query(["SADD", "chat:users:usernames", username])
-    redirect conn, to: "/users"
+    case Chat.SignIn.run(username) do
+      {:ok, username} ->
+        redirect conn, to: "/users"
+      {message, username} ->
+        conn
+        |> put_flash(:error, "#{message} #{username}")
+        |> render "new.html"
+    end
   end
 end
