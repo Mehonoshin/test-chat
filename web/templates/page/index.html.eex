@@ -1,3 +1,0 @@
-<div class="jumbotron">
-  <p><%= @data %></p>
-</div>

@@ -38,7 +38,8 @@ defmodule Chat.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:exredis, ">= 0.2.4"}
+     {:exredis, ">= 0.2.4"},
+     {:phoenix_haml, "~> 0.2.1"}
    ]
   end
 
