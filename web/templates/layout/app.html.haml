@@ -24,4 +24,5 @@
       %p.alert.alert-danger{:role => "alert"}= get_flash(@conn, :error)
       %main{:role => "main"}= render @view_module, @view_template, assigns
     / /container
+    %script{:src => "//code.jquery.com/jquery-1.12.4.min.js"}
     %script{:src => "#{static_path(@conn, "/js/app.js")}"}
