@@ -9,6 +9,7 @@ defmodule Chat.JobsConsumer do
   @exchange    "collector.jobs"
   @queue       "collector.dashboard_jobs"
   @queue_error "#{@queue}_error"
+  @routing_key "vk_collect"
 
   def init(_opts) do
     {:ok, conn} = Connection.open("amqp://guest:guest@localhost")
@@ -20,7 +21,7 @@ defmodule Chat.JobsConsumer do
                                 arguments: [{"x-dead-letter-exchange", :longstr, ""},
                                             {"x-dead-letter-routing-key", :longstr, @queue_error}])
     Exchange.direct(chan, @exchange, durable: true)
-    Queue.bind(chan, @queue, @exchange)
+    Queue.bind(chan, @queue, @exchange, routing_key: @routing_key)
 
     {:ok, _consumer_tag} = Basic.consume(chan, @queue)
     {:ok, chan}
