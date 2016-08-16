@@ -1,5 +1,4 @@
 defmodule Chat.JobsConsumer do
-  use GenServer
   use AMQP
 
   def start_link do
@@ -49,6 +48,6 @@ defmodule Chat.JobsConsumer do
 
   defp consume(channel, tag, redelivered, payload) do
     Basic.reject channel, tag, requeue: false
-    IO.puts "Received #{payload} "
+    Chat.Endpoint.broadcast!("stream:all", "new_msg", %{message: payload})
   end
 end
