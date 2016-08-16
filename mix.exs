@@ -19,7 +19,7 @@ defmodule Chat.Mixfile do
   def application do
     [mod: {Chat, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :amqp]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,9 @@ defmodule Chat.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:exredis, ">= 0.2.4"},
-     {:phoenix_haml, "~> 0.2.1"}
+     {:phoenix_haml, "~> 0.2.1"},
+     {:amqp_client, git: "https://github.com/dsrosario/amqp_client.git", branch: "erlang_otp_19", override: true},
+     {:amqp, "0.1.4"}
    ]
   end
 
